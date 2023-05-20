@@ -1,18 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-  <form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <label for="file">Select a CSV file to upload:</label>
-    <input type="file" name="file" accept=".csv">
-    <button type="submit">Upload</button>
-  </form>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SOLAR PANEL FAULT DETECTION</title>
+        <style>
+            /* CSS styles here */
+        </style>
+    </head>
+    <body>
+      <div class="container">
+        <h1>SOLAR PANEL FAULT DETECTION</h1>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="file-input-wrapper">
+            <label for="file" class="file-label">
+              Choose a file
+              <input type="file" name="file" id="file" accept=".csv" onchange="showFileName()" />
+            </label>
+            <span id="file-name">No file chosen</span>
+          </div>
+          <button type="submit">Upload</button>
+        </form>
+      </div>
     
-</body>
+      <script>
+        function showFileName() {
+          var fileInput = document.getElementById("file");
+          var fileName = document.getElementById("file-name");
+          fileName.textContent = fileInput.files[0] ? fileInput.files[0].name : "No file chosen";
+        }
+      </script>
+    </body>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100vh;
+      }
+  
+      .container {
+          width: 100%;
+          max-width: 400px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+  
+      form {
+          margin-top: 20px;
+          padding: 20px;
+          background-color: #fff;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+      }
+  
+      h1 {
+          background-color: #4CAF50;
+          color: #fff;
+          padding: 10px;
+          text-align: center;
+          margin: 0;
+      }
+  
+      .file-input-wrapper {
+          position: relative;
+          margin-bottom: 10px;
+      }
+  
+      .file-label {
+          display: inline-block;
+          padding: 10px 20px;
+          background-color: #4CAF50;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+          z-index: 1;
+      }
+  
+      .file-label input[type="file"] {
+          position: absolute;
+          left: 0;
+          top: 0;
+          opacity: 0;
+          cursor: pointer;
+          width: 100%;
+          height: 100%;
+          z-index: 3;
+      }
+  
+      #file-name {
+          display: block;
+          margin-top: 5px;
+          text-align: center;
+          color: #333;
+          font-size: 14px;
+          z-index: 2;
+      }
+  
+      button[type="submit"] {
+          margin-top: 10px;
+          padding: 15px 30px;
+          background-color: #4CAF50;
+          color: #fff;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          font-size: 16px;
+      }
+  </style>
+  
+  
+  
+
+  
 </html>
+
