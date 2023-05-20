@@ -15,8 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from csvfile.views import upload_csv
+from csvfile.views import upload_csv,home_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('upload/', upload_csv, name='upload'),
+    path('',home_page,name='home')
 ]

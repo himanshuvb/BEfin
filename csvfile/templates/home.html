@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOLAR PANEL FAULT DETECTION</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        h1 {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .image-container img {
+            width: 300px;
+            height: auto;
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button-container button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>SOLAR PANEL FAULT DETECTION</h1>
+    
+    <div class="image-container">
+        <img src="{% static 'solar-panel-1.jpg' %}" alt="Solar Panel 1">
+        <!-- Add more images here as needed -->
+    </div>
+
+    <div class="button-container">
+        <button onclick="redirectToUploadPage()">Go to Upload Page</button>
+    </div>
+
+    <script>s
+        function redirectToUploadPage() {
+            window.location.href = "/upload";
+        }
+    </script>
+</body>
+</html>

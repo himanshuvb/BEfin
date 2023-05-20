@@ -46,3 +46,6 @@ def upload_csv(request):
         context = {'df': df, 'pred' : dictio[mode]}
         return render(request, 'result.html', context)
     return render(request, 'upload_csv.html')
+
+def home_page(request):
+     return render(request, 'home.html')
