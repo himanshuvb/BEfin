@@ -23,7 +23,7 @@ def get_model():
                   metrics=['accuracy'])
     print("Model loaded successfully")
     
-def upload_csv(request):
+''' def upload_csv(request):
         
     if request.method == 'POST' and request.FILES['file']:
         file = request.FILES['file']
@@ -45,7 +45,29 @@ def upload_csv(request):
 
         context = {'df': df, 'pred' : dictio[mode]}
         return render(request, 'result.html', context)
-    return render(request, 'upload_csv.html')
+    return render(request, 'upload_csv.html') '''
 
 def home_page(request):
-     return render(request, 'home.html')
+          
+    if request.method == 'POST' and request.FILES['file']:
+        file = request.FILES['file']
+        df = pd.read_csv(file)
+        scaler = StandardScaler()
+
+        df = scaler.fit_transform(df)
+        print(df)
+        df = pd.DataFrame(df,columns= [a for a in range(0,14)])
+        print(df.head())
+        print(type(df))
+        X = df.iloc[0:8,1:14]
+        print("-----------------------------------",X,"------------------------------")
+        get_model()
+        pred = model.predict(X).argmax(axis=1)
+        dictio = {0: 'F0L', 1: 'F0M', 2: 'F1L', 3: 'F1M', 4: 'F2L', 5: 'F2M', 6: 'F3L', 7: 'F3M', 8: 'F4L', 9: 'F4M', 10: 'F5L', 11: 'F5M', 12: 'F6L', 13: 'F6M', 14: 'F7L', 15: 'F7M'}
+        
+        mode = statistics.mode(pred)
+
+        context = {'df': df, 'pred' : dictio[mode]}
+        return render(request, 'result.html', context)
+    return render(request, 'index.html')
+    
