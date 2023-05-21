@@ -19,5 +19,5 @@ from csvfile.views import home_page
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('upload/', upload_csv, name='upload'),
-    path('',home_page,name='home')
+    path('',home_page,name='home'),
 ]

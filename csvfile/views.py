@@ -12,12 +12,12 @@ import statistics
 def get_model():
     
     global model
-    json_file = open("D:\dowmload\model.json","r")
+    json_file = open("E:\BEproj\model.json","r")
     loaded_model_json = json_file.read()
     model = model_from_json(loaded_model_json)
     json_file.close()
     
-    model.load_weights("D:\dowmload\model_for_json.h5")
+    model.load_weights("E:\BEproj\model_for_json.h5")
     model.compile(optimizer='adam',
               loss='categorical_crossentropy', # this is different instead of binary_crossentropy (for regular classification)
                   metrics=['accuracy'])
@@ -67,7 +67,27 @@ def home_page(request):
         
         mode = statistics.mode(pred)
 
-        context = {'df': df, 'pred' : dictio[mode]}
+        fault_names = {
+            'F1L': 'Inverter fault',
+            'F2L': 'Feedback Sensor fault',
+            'F3L': 'Grid anomaly',
+            'F4L': 'PV array mismatch',
+            'F5L': 'PV array mismatch',
+            'F6L': 'MPPT/IPPT controller fault',
+            'F7L': 'Boost converter controller fault',
+            'F1M': 'Inverter fault',
+            'F2M': 'Feedback Sensor fault',
+            'F3M': 'Grid anomaly',
+            'F4M': 'PV array mismatch',
+            'F5M': 'PV array mismatch',
+            'F6M': 'MPPT/IPPT controller fault',
+            'F7M': 'Boost converter controller fault',
+            'F8M': 'Inverter fault',
+        }
+        name=fault_names[dictio[mode]]
+        context = {'df': df, 'pred' : name}
         return render(request, 'result.html', context)
     return render(request, 'index.html')
+
+
     
