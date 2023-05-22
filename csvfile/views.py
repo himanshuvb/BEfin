@@ -5,9 +5,12 @@ import pandas as pd
 from tensorflow.keras.models import load_model
 
 from tensorflow.keras.models import model_from_json
-
 from sklearn.preprocessing import StandardScaler
 import statistics
+import matplotlib.pyplot as plt
+import pandas as pd
+import base64
+import io
 
 def get_model():
     
@@ -66,6 +69,36 @@ def home_page(request):
         get_model()
         pred = model.predict(X).argmax(axis=1)
         dictio = {0: 'F0L', 1: 'F0M', 2: 'F1L', 3: 'F1M', 4: 'F2L', 5: 'F2M', 6: 'F3L', 7: 'F3M', 8: 'F4L', 9: 'F4M', 10: 'F5L', 11: 'F5M', 12: 'F6L', 13: 'F6M', 14: 'F7L', 15: 'F7M'}
+        fault_pie = {
+            2: 'Inverter fault',
+            4: 'Feedback Sensor fault',
+            6: 'Grid anomaly',
+            8: 'PV array mismatch',
+            10: 'PV array mismatch',
+            12: 'MPPT/IPPT controller fault',
+            14: 'Boost converter controller fault',
+            3: 'Inverter fault',
+            5: 'Feedback Sensor fault',
+            7: 'Grid anomaly',
+            9: 'PV array mismatch',
+            11: 'PV array mismatch',
+            13: 'MPPT/IPPT controller fault',
+            15: 'Boost converter controller fault',
+            1 : 'NORMAL',
+            0 : 'NORMAL',
+
+        }
+        df_pred = pd.DataFrame({'Prediction': pred})
+        class_counts = df_pred['Prediction'].value_counts()
+        class_counts.index = class_counts.index.map(fault_pie)
+        fig, ax = plt.subplots()
+        ax.pie(class_counts, labels=class_counts.index, autopct='%1.1f%%')
+        ax.set_aspect('equal')
+        ax.set_title('Prediction Distribution')
+        buffer = io.BytesIO()
+        plt.savefig(buffer, format='png')
+        buffer.seek(0)
+        chart_data = base64.b64encode(buffer.read()).decode('utf-8')
         
         mode = statistics.mode(pred)
 
@@ -109,7 +142,7 @@ def home_page(request):
         }
         name=fault_names[dictio[mode]]
         desc = fault_description[dictio[mode]]
-        context = {'df': df, 'pred' : name,'description': desc}
+        context = {'df': df,'chart_data': chart_data, 'pred' : name,'description': desc}
         return render(request, 'result.html', context)
     return render(request, 'index.html')
 
