@@ -3,7 +3,7 @@ from django.http  import HttpResponse
 # Create your views here.
 import pandas as pd
 from tensorflow.keras.models import load_model
-
+import numpy as np
 from tensorflow.keras.models import model_from_json
 from sklearn.preprocessing import StandardScaler
 import statistics
@@ -15,13 +15,13 @@ import io
 def get_model():
     
     global model
-    json_file = open("D:\dowmload\model.json","r")
+    json_file = open("D:\dowmload\model3.json","r")
     #json_file = open("E:\BEproj\model.json","r")
     loaded_model_json = json_file.read()
     model = model_from_json(loaded_model_json)
     json_file.close()
     
-    model.load_weights("D:\dowmload\model_for_json.h5")
+    model.load_weights("D:\dowmload\model_for_json3.h5")
     #model.load_weights("E:\BEproj\model_for_json.h5")
     model.compile(optimizer='adam',
               loss='categorical_crossentropy', # this is different instead of binary_crossentropy (for regular classification)
@@ -59,13 +59,12 @@ def home_page(request):
         df = pd.read_csv(file)
         scaler = StandardScaler()
 
-        df = scaler.fit_transform(df)
+        df.iloc[:,:-1] = scaler.fit_transform(df.iloc[:,:-1])
         print(df)
-        df = pd.DataFrame(df,columns= [a for a in range(0,14)])
-        print(df.head())
-        print(type(df))
-        X = df.iloc[0:8,1:14]
-        print("-----------------------------------",X,"------------------------------")
+        df = df[:1000]
+        X = df.iloc[:,1:].values.reshape(-1, 20, 13, 1)
+        
+        
         get_model()
         pred = model.predict(X).argmax(axis=1)
         dictio = {0: 'F0L', 1: 'F0M', 2: 'F1L', 3: 'F1M', 4: 'F2L', 5: 'F2M', 6: 'F3L', 7: 'F3M', 8: 'F4L', 9: 'F4M', 10: 'F5L', 11: 'F5M', 12: 'F6L', 13: 'F6M', 14: 'F7L', 15: 'F7M'}
