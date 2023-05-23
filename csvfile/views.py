@@ -61,7 +61,7 @@ def home_page(request):
 
         df.iloc[:,:-1] = scaler.fit_transform(df.iloc[:,:-1])
         print(df)
-        df = df[:1000]
+        df = df[:260]
         X = df.iloc[:,1:].values.reshape(-1, 20, 13, 1)
         
         
