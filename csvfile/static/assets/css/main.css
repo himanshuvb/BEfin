@@ -3380,10 +3380,10 @@ input, select, textarea {
 				width: 0.5rem;
 				z-index: 1;
 			}
-			.intro{
+			/* .intro{
 				background-color: snow;
-			}
-
+			} */
+		
 		#wrapper .copyright {
 			color: rgba(0, 0, 0, 0.25);
 			font-size: 1rem;

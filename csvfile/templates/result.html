@@ -28,7 +28,7 @@
       }
     
       .scrollable {
-        max-height: 400px; /* Adjust the max-height as needed */
+        max-height: 400px;
         overflow-y: scroll;
       }
     </style>
@@ -38,7 +38,9 @@
 <body>
   <nav class="navbar navbar-expand-lg" style="background-color: #00fcf4;">
     <div class="container-fluid">
-      <a class="navbar-brand" href="{% url 'home' %}">Solar Panel Fault Detection</a>
+      <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="{%static 'logo6.svg' %}" alt="Logo" width=60 height=60 style="border-radius: 50%;" >
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -47,16 +49,54 @@
           <!-- <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a> -->
           <!-- <a class="nav-link" href="#">Features</a>
           <a class="nav-link disabled">Disabled</a> -->
+  
+          <!-- Other faults dropdown -->
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="otherFaultsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Other faults
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="otherFaultsDropdown">
+              <li><a class="dropdown-item" href="#">Inverter fault</a></li>
+              <li><a class="dropdown-item" href="#">Feedback Sensor fault</a></li>
+              <li><a class="dropdown-item" href="#">Grid anomaly</a></li>
+              <li><a class="dropdown-item" href="#">PV array mismatch:10 to 20% nonhomogeneous partial shading </a></li>
+              <li><a class="dropdown-item" href="#">PV array mismatch:15% open circuit in PV array</a></li>
+              <li><a class="dropdown-item" href="#">MPPT/IPPT controller fault</a></li>
+              <li><a class="dropdown-item" href="#">Boost converter controller fault</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
   </nav>
+  
+  
   <div class="chart-container">
     <img src="data:image/png;base64,{{ chart_data }}" alt="Pie Chart" class="chart-image">
     <div class="description-container">
       <p>{{description|safe}}</p>
     </div>
   </div>
-  
+  <footer style="background-color:#00fcf4;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>About Us</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae dapibus nisi. In hac habitasse platea dictumst. Sed vel nulla ac justo eleifend feugiat.</p>
+            </div>
+            <div class="col-md-6">
+                <h4>Follow us on Social Media here</h4>
+                <ul class="social-media-list">
+                  <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+                  <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+                  <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                  <li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+                  <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+                  <li><a href="#" class="icon brands fa-codepen"><span class="label">Codepen</span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
