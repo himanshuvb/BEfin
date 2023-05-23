@@ -15,14 +15,14 @@ from .models import ContactForm
 def get_model():
     
     global model
-    json_file = open("D:\dowmload\model3.json","r")
-    #json_file = open("E:\BEproj\model3.json","r")
+    #json_file = open("D:\dowmload\model3.json","r")
+    json_file = open("E:\BEproj\model3.json","r")
     loaded_model_json = json_file.read()
     model = model_from_json(loaded_model_json)
     json_file.close()
     
-    model.load_weights("D:\dowmload\model_for_json3.h5")
-    #model.load_weights("E:\BEproj\model_for_json3.h5")
+    #model.load_weights("D:\dowmload\model_for_json3.h5")
+    model.load_weights("E:\BEproj\model_for_json3.h5")
     model.compile(optimizer='adam',
               loss='categorical_crossentropy', # this is different instead of binary_crossentropy (for regular classification)
                   metrics=['accuracy'])
