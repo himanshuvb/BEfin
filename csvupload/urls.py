@@ -15,9 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from csvfile.views import home_page
+from csvfile.views import home_page,other_faults_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('upload/', upload_csv, name='upload'),
     path('',home_page,name='home'),
+    path('other-faults/<str:fault>/', other_faults_view, name='other_faults'),
 ]
