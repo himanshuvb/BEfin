@@ -401,8 +401,9 @@ print 'Sorted in ' + i + ' iterations.';</code></pre>
 					</header>
 					<div class="content">
 						<p class="lead mb-4">To know about your <strong>Fault in Solar Panel</strong> upload your file here.</p>
-						<form method="post" enctype="multipart/form-data">
+						<form method="post" name = "form_name" value="form1"enctype="multipart/form-data">
 							{% csrf_token %}
+							<input type="hidden" name="form_name" value="form1">
 							<div class="file-input-wrapper">
 								<label for="file" class="file-label">
 									Choose a file
@@ -423,7 +424,9 @@ print 'Sorted in ' + i + ' iterations.';</code></pre>
 						</header>
 						<div class="content">
 							<p>To learn more about our services and how we can assist you, please don't hesitate to get in touch. Our knowledgeable team is ready to address any inquiries you may have and guide you through the process. By partnering with us, you can ensure the optimal performance and longevity of your solar panel systems. Contact us today and discover the benefits of our solar panel fault detection solutions.</p>
-							<form>
+							<form method="post" enctype="multipart/form-data">
+								{% csrf_token %}
+								<input type="hidden" name="form_name" value="form2">
 								<div class="fields">
 									<div class="field half">
 										<input type="text" name="name" id="name" placeholder="Name" />
