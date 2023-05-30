@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http  import HttpResponse
 # Create your views here.
+from django.http import FileResponse
+from django.conf import settings
+import os
 import pandas as pd
 from tensorflow.keras.models import load_model
 import numpy as np
@@ -164,4 +167,6 @@ def other_faults_view(request, fault):
     # Render the appropriate template based on the fault parameter
     template_name = fault + '.html'
     return render(request, template_name)
+
+
     

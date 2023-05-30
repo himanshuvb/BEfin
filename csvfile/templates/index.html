@@ -15,15 +15,32 @@
 			<div id="wrapper">
 
 				<!-- Intro -->
+				
+
+
 					<section class="intro">
 						<header>
 							<h1>Solar Panel Fault Detection</h1>
 							<!-- <p>A free responsive site template designed by <a href="https://twitter.com/ajlkn">@ajlkn</a> / <a href="https://html5up.net">HTML5 UP</a></p> -->
 							<button type="button" id="toUpload" class="btn btn-primary btn-lg px-4 me-sm-3" style='background-color: white;'>Go To Upload Page</button>
 							<button type="button" id="navigateButton" class="btn btn-outline-secondary btn-lg px-4" style='background-color: white;'>Get In Touch</button>
+							<button type="button" id="guideButton" class="btn btn-outline-secondary btn-lg px-4" style="background-color: white;">Guide</button>
 						</header>
 						<div class="content">
 							<span class="image fill" data-position="center"><img src="{% static 'logo9.svg' %}"alt="" /></span>
+						</div>
+					</section>
+					<section id="guide">
+						<header>
+							<h2>Guide</h2>
+						</header>
+						<div class="content">
+							<p>Welcome to our Solar Panel Fault Detection system! To get started, simply click on the link provided to download the <a href="https://drive.google.com/uc?export=download&id=19p-vrMvmJ4liWVDjBqOc4gfa1N_0xBav" class="btn btn-primary btn-lg px-4" style="background-color: white;"><strong>guide pdf</strong></a>. Our system will then analyze the data and detect any potential faults or issues in your panels. With our intuitive design and powerful algorithms, you can easily identify and address any problems with your solar panels, ensuring optimal performance and maximizing your energy generation.</p>
+							<a href="https://drive.google.com/uc?export=download&id=19p-vrMvmJ4liWVDjBqOc4gfa1N_0xBav" class="btn btn-primary btn-lg px-4" style="background-color: white;">
+								Download Guide PDF
+							  </a>
+							  
+							  
 						</div>
 					</section>
 
@@ -410,7 +427,7 @@ print 'Sorted in ' + i + ' iterations.';</code></pre>
 					
 				</section>
 
-				<section id="first">
+				<section>
 					<header>
 						<h2>About Us</h2>
 					</header>
@@ -509,6 +526,13 @@ print 'Sorted in ' + i + ' iterations.';</code></pre>
     			firstElement.scrollIntoView({ behavior: "smooth" });
   			}
 			});
+
+			document.getElementById("guideButton").addEventListener("click", function() {
+				const firstElement = document.getElementById("guide");
+				if (firstElement) {
+				  firstElement.scrollIntoView({ behavior: "smooth" });
+				}
+			  });
 		</script>
 			<script src="{% static 'assets/js/jquery.min.js' %}"></script>
 			<script src="{% static 'assets/js/jquery.scrolly.min.js' %}"></script>
